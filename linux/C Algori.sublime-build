@@ -1,7 +1,7 @@
 {
 	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 	"working_dir": "${file_path}",
-	"selector": "source.c++",
+	"selector": "source.c",
 	"shell_cmd": "make --eval=\"${file_base_name}.out: ${file_name}; gcc -o \\\"${file_base_name}.out\\\" \\\"${file_name}\\\"; chmod +x ${file_base_name}.out\"",
 	"variants": [
 	{

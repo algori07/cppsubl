@@ -1,7 +1,7 @@
 {
 	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 	"working_dir": "${file_path}",
-	"selector": "source.c++",
+	"selector": "source.c",
 	"env": {
 		"MINGW_PATH": "D:\\mingw32",
 		"PATH": "${MINGW_PATH}\\bin;${PATH}"
