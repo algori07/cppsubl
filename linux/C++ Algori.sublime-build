@@ -1,0 +1,16 @@
+{
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${file_path}",
+	"selector": "source.c++",
+	"shell_cmd": "make --eval=\"${file_base_name}.out: ${file_name}; g++ -std=c++20 -o \\\"${file_base_name}.out\\\" \\\"${file_name}\\\"; chmod +x ${file_base_name}.out\"",
+	"variants": [
+	{
+		"name": "Run",
+		"shell_cmd": "xterm -e consolepauser -s \"./${file_base_name}.out\""
+	},
+	{
+		"name": "Build and Run",
+		"shell_cmd": "make --eval=\"${file_base_name}.out: ${file_name}; g++ -std=c++20 -o \\\"${file_base_name}.out\\\" \\\"${file_name}\\\"; chmod +x ${file_base_name}.out\" && xterm -e consolepauser -s \"./${file_base_name}.out\""
+	}
+	]
+}

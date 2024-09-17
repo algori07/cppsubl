@@ -1,0 +1,20 @@
+{
+	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${file_path}",
+	"selector": "source.c++",
+	"env": {
+		"MINGW_PATH": "D:\\mingw32",
+		"PATH": "${MINGW_PATH}\\bin;${PATH}"
+	},
+	"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; gcc.exe -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" ",
+	"variants": [
+	{
+		"name": "Run",
+		"shell_cmd" : "start \"${file_name}\" ConsolePauser -s \"${file_base_name}.exe\""
+	},
+	{
+		"name": "Build and Run",
+		"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; gcc.exe -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && start \"${file_name}\" ConsolePauser -s \"${file_base_name}.exe\""
+	}
+	]
+}
