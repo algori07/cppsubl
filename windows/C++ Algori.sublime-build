@@ -3,18 +3,17 @@
 	"working_dir": "${file_path}",
 	"selector": "source.c++",
 	"env": {
-		"MINGW_PATH": "D:\\mingw32",
-		"PATH": "${MINGW_PATH}\\bin;${PATH}"
+		"PATH": "D:\\mingw32\\bin;${PATH}"
 	},
-	"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -std=c++20 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" ",
+	"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" ",
 	"variants": [
 	{
 		"name": "Run",
-		"shell_cmd" : "start \"${file_name}\" ConsolePauser -s \"${file_base_name}.exe\""
+		"shell_cmd" : "if exist \"${file_base_name}.inp\" (start \"${file_name}\" ConsolePauser -s -i \"${file_base_name}.inp\" -- \"${file_base_name}.exe\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
 	},
 	{
 		"name": "Build and Run",
-		"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -std=c++20 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && start \"${file_name}\" ConsolePauser -s \"${file_base_name}.exe\""
+		"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist \"${file_base_name}.inp\" (start \"${file_name}\" ConsolePauser -s -i \"${file_base_name}.inp\" -- \"${file_base_name}.exe\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
 	}
 	]
 }
