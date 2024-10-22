@@ -9,11 +9,23 @@
 	"variants": [
 	{
 		"name": "Run",
-		"shell_cmd" : "if exist \"${file_base_name}.inp\" (start \"${file_name}\" ConsolePauser -s -i \"${file_base_name}.inp\" -- \"${file_base_name}.exe\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
+		"shell_cmd": "mingw32-make -s --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\""
 	},
 	{
-		"name": "Build and Run",
-		"shell_cmd": "mingw32-make --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist \"${file_base_name}.inp\" (start \"${file_name}\" ConsolePauser -s -i \"${file_base_name}.inp\" -- \"${file_base_name}.exe\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
+		"name": "Run with input file and console",
+		"shell_cmd": "mingw32-make -s --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist \"${file_base_name}.inp\" (start \"${file_name}\" ConsolePauser -s -i \"${file_base_name}.inp\" -- \"${file_base_name}.exe\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
+	},
+	{
+		"name": "Run with input file",
+		"shell_cmd": "mingw32-make -s --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist \"${file_base_name}.inp\" (\"${file_base_name}.exe\" <\"${file_base_name}.inp\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
+	},
+	{
+		"name": "Run with input and output file",
+		"shell_cmd": "mingw32-make -s --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist \"${file_base_name}.inp\" (\"${file_base_name}.exe\" <\"${file_base_name}.inp\" >\"${file_base_name}.out\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
+	},
+	{
+		"name": "Run with input.txt and output.txt",
+		"shell_cmd": "mingw32-make -s --eval=\"${file_base_name}.exe: ${file_name}; g++.exe -ftabstop=1 -std=gnu++17 -o \\\"${file_base_name}.exe\\\" \\\"${file_name}\\\" \" && if exist input.txt (\"${file_base_name}.exe\" <\"input.txt\" >\"output.txt\") else (start \"${file_name}\" ConsolePauser -s -- \"${file_base_name}.exe\")"
 	}
 	]
 }
